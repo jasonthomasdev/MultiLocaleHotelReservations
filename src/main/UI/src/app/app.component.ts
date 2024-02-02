@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
       this.welcomeMessages = data;
     });
 
-    // Fetch presentation times (Corrected Placement)
+    // Fetch presentation times
     this.httpClient.get(`${this.baseURL}/presentationTime`).subscribe(data => {
       this.presentationTimes = data;
     });
@@ -55,6 +55,7 @@ export class AppComponent implements OnInit {
         this.rooms = rooms; // Directly assign the rooms
       }
     );
+
   }
 
   reserveRoom(value: string) {
