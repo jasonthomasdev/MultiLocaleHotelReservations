@@ -23,7 +23,7 @@
   <div class="scene" id="welcome">
     <article class="content">
 
- 
+
 
       <div class="row">
         <div class=""col-12>
@@ -33,6 +33,11 @@
             <img src="assets/images/intro_dining.jpg" alt="Intro Gallery Dining Sample Pictures">
             <img src="assets/images/intro_attractions.jpg" alt="Intro Gallery Attractions Sample Pictures">
             <img class="hidesm" src="assets/images/intro_wedding.jpg" alt="Intro Gallery Dining Sample Pictures">
+          </div>
+          <!-- Welcome messages -->
+          <div class="welcome-messages">
+            <h1>{{ welcomeMessages.en }}</h1>
+            <h1>{{ welcomeMessages.fr }}</h1>
           </div>
           <h1>Book a Room</h1>
           <form class="form-horizontal" [formGroup]="roomsearch"
@@ -58,7 +63,7 @@
               </div>
               </form>
 
-        
+
         </div>
       </div>
 
@@ -75,7 +80,9 @@
                 </td>
                 <td>
                   <strong>Room #: {{room.roomNumber}}</strong><br/>
-                  <strong>Price: ${{room.price}}</strong>
+                  <strong>Price (USD): ${{room.price}}</strong><br/>
+                  <strong>Price (CAD): C${{ room.priceCAD }}</strong><br/>
+                  <strong>Price (EUR): €{{ room.priceEUR }}</strong>
                 </td>
                 <td>
                   <button type="submit" class="btn btn-primary" (click)="reserveRoom(room.id)">Reserve</button>

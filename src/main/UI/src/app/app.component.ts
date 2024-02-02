@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable } from 'rxjs';
+import {map, Observable} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +13,8 @@ export class AppComponent implements OnInit {
   // New property for storing welcome messages
   welcomeMessages: any = {};
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+  }
 
   private baseURL: string = 'http://localhost:8080';
   private postUrl: string = this.baseURL + '/room/reservation/v1';
@@ -42,9 +43,11 @@ export class AppComponent implements OnInit {
     });
   }
 
-  onSubmit({ value, valid }: { value: Roomsearch, valid: boolean }) {
+  onSubmit({value, valid}: { value: Roomsearch, valid: boolean }) {
     this.getAll().subscribe(
-      rooms => { console.log(Object.values(rooms)[0]); this.rooms = <Room[]>Object.values(rooms)[0]; }
+      rooms => {
+        this.rooms = rooms; // Directly assign the rooms
+      }
     );
   }
 
@@ -55,7 +58,7 @@ export class AppComponent implements OnInit {
 
   createReservation(body: ReserveRoomRequest) {
     let bodyString = JSON.stringify(body); // Stringify payload
-    let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+    let headers = new Headers({'Content-Type': 'application/json'}); // ... Set content type to JSON
 
     const options = {
       headers: new HttpHeaders().append('key', 'value'),
@@ -65,11 +68,22 @@ export class AppComponent implements OnInit {
       .subscribe(res => console.log(res));
   }
 
-  getAll(): Observable<any> {
-    return this.httpClient.get(this.baseURL + '/room/reservation/v1?checkin=' + this.currentCheckInVal + '&checkout=' + this.currentCheckOutVal, { responseType: 'json' });
+  getAll(): Observable<Room[]> {
+    return this.httpClient.get<any>(this.baseURL + '/room/reservation/v1?checkin=' + this.currentCheckInVal + '&checkout=' + this.currentCheckOutVal)
+      .pipe(
+        map(response => {
+          const rooms = response.content; // Access the content array which contains the rooms
+          const conversionRateCAD = 1.25;
+          const conversionRateEUR = 0.85;
+          rooms.forEach((room: Room) => {
+            room.priceCAD = (parseFloat(room.price) * conversionRateCAD).toFixed(2);
+            room.priceEUR = (parseFloat(room.price) * conversionRateEUR).toFixed(2);
+          });
+          return rooms;
+        })
+      );
   }
 }
-
 export interface Roomsearch {
   checkin: string;
   checkout: string;
@@ -79,9 +93,9 @@ export interface Room {
   id: string;
   roomNumber: string;
   price: string;
-  links: string;
-  priceCAD: string;
-  priceEUR: string;
+  links?: string;
+  priceCAD?: string;
+  priceEUR?: string;
 }
 
 export class ReserveRoomRequest {
