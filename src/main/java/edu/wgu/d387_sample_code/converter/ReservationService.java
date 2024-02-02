@@ -1,7 +1,6 @@
-package edu.wgu.d387_sample_code.convertor;
+package edu.wgu.d387_sample_code.converter;
 
 import edu.wgu.d387_sample_code.entity.ReservationEntity;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 

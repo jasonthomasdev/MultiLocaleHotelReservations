@@ -9,7 +9,8 @@ import {map, Observable} from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
+  // New property for storing presentation times
+  presentationTimes: any = {};
   // New property for storing welcome messages
   welcomeMessages: any = {};
 
@@ -40,6 +41,11 @@ export class AppComponent implements OnInit {
     // Fetch welcome messages
     this.httpClient.get(this.baseURL + '/welcome').subscribe(data => {
       this.welcomeMessages = data;
+    });
+
+    // Fetch presentation times (Corrected Placement)
+    this.httpClient.get(`${this.baseURL}/presentationTime`).subscribe(data => {
+      this.presentationTimes = data;
     });
   }
 
@@ -72,7 +78,7 @@ export class AppComponent implements OnInit {
     return this.httpClient.get<any>(this.baseURL + '/room/reservation/v1?checkin=' + this.currentCheckInVal + '&checkout=' + this.currentCheckOutVal)
       .pipe(
         map(response => {
-          const rooms = response.content; // Access the content array which contains the rooms
+          const rooms = response.content; // Access the content array that contains the rooms
           const conversionRateCAD = 1.25;
           const conversionRateEUR = 0.85;
           rooms.forEach((room: Room) => {

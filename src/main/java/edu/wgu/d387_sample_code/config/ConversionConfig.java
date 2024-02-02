@@ -1,9 +1,9 @@
 package edu.wgu.d387_sample_code.config;
 
 
-import edu.wgu.d387_sample_code.convertor.ReservationEntityToReservationResponseConverter;
-import edu.wgu.d387_sample_code.convertor.ReservationRequestToReservationEntityConverter;
-import edu.wgu.d387_sample_code.convertor.RoomEntityToReservableRoomResponseConverter;
+import edu.wgu.d387_sample_code.converter.ReservationEntityToReservationResponseConverter;
+import edu.wgu.d387_sample_code.converter.ReservationRequestToReservationEntityConverter;
+import edu.wgu.d387_sample_code.converter.RoomEntityToReservableRoomResponseConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;

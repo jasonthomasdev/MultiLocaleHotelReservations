@@ -39,6 +39,13 @@
             <h1>{{ welcomeMessages.en }}</h1>
             <h1>{{ welcomeMessages.fr }}</h1>
           </div>
+          <!-- Timezone Display -->
+          <div *ngIf="presentationTimes">
+            <h3>Online Live Presentation Times:</h3>
+            <p>Eastern Time (ET): {{presentationTimes.ET}}</p>
+            <p>Mountain Time (MT): {{presentationTimes.MT}}</p>
+            <p>Coordinated Universal Time (UTC): {{presentationTimes.UTC}}</p>
+          </div>
           <h1>Book a Room</h1>
           <form class="form-horizontal" [formGroup]="roomsearch"
           (ngSubmit)="onSubmit(roomsearch)">

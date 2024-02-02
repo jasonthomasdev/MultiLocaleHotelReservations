@@ -1,8 +1,7 @@
-package edu.wgu.d387_sample_code.convertor;
+package edu.wgu.d387_sample_code.converter;
 
 import edu.wgu.d387_sample_code.entity.ReservationEntity;
 import edu.wgu.d387_sample_code.repository.ReservationRepository;
-import edu.wgu.d387_sample_code.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

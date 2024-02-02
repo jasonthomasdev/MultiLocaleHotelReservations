@@ -1,12 +1,10 @@
-package edu.wgu.d387_sample_code.convertor;
+package edu.wgu.d387_sample_code.converter;
 
 
 
 import edu.wgu.d387_sample_code.entity.ReservationEntity;
 import edu.wgu.d387_sample_code.entity.RoomEntity;
 import edu.wgu.d387_sample_code.model.request.ReservationRequest;
-import edu.wgu.d387_sample_code.repository.ReservationRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;

@@ -1,7 +1,7 @@
 package edu.wgu.d387_sample_code.rest;
 
 
-import edu.wgu.d387_sample_code.convertor.*;
+import edu.wgu.d387_sample_code.converter.*;
 import edu.wgu.d387_sample_code.entity.ReservationEntity;
 import edu.wgu.d387_sample_code.entity.RoomEntity;
 import edu.wgu.d387_sample_code.model.request.ReservationRequest;
@@ -28,7 +28,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.time.LocalDate;
 import java.util.List;
